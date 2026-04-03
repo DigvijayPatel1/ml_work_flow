@@ -1,6 +1,6 @@
 import sys 
 
-from us_visa.exception import USVisaException
+from us_visa.exception import USvisaException
 from us_visa.logger import logging
 
 import os
@@ -27,11 +27,13 @@ class MongoDBClient:
             if MongoDBClient.client is None:
                 mongo_db_url = os.getenv(MONGODB_URL_KEY)
                 if mongo_db_url is None:
-                    raise USVisaException(f"MongoDB URL not found in environment variables with key: {MONGODB_URL_KEY}")
-            MongoDBClient.client = pymongo.MongoClient(mongo_db_url, tlsCAFile=ca)
+                    raise USvisaException(f"MongoDB URL not found in environment variables with key: {MONGODB_URL_KEY}", sys)
+                MongoDBClient.client = pymongo.MongoClient(mongo_db_url, tlsCAFile=ca)
+
             self.client = MongoDBClient.client
             self.database = self.client[database_name]
             self.database_name = database_name
+            
             logging.info(f"Connected to MongoDB database: {database_name}")
         except Exception as e:
-            raise USVisaException(e, sys)
+            raise USvisaException(e, sys)

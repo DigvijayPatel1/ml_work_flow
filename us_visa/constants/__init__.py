@@ -4,9 +4,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-DATABASE_NAME = os.getenv("DB_NAME")
-COLLECTION_NAME = os.getenv("COLLECTION_NAME")
-MONGODB_URL_KEY = os.getenv("CONNECTION_URL")
+DATABASE_NAME = os.getenv("DB_NAME", "us_visa_db")
+COLLECTION_NAME = os.getenv("COLLECTION_NAME", "visa_data")
+MONGODB_URL_KEY = "CONNECTION_URL"
 
 PIPELINE_NAME: str = "usvisa"
 ARTIFACT_DIR: str = "artifact"
