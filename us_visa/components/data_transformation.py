@@ -2,7 +2,7 @@ import sys
 
 import pandas as pd
 import numpy as np
-from imblearn.combine import SMOTETomek
+from imblearn.combine import SMOTEENN
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler, OneHotEncoder, OrdinalEncoder, PowerTransformer
 from sklearn.compose import ColumnTransformer
@@ -121,7 +121,7 @@ class DataTransformation:
 
                 target_feature_train_df = target_feature_train_df.replace(
                     TargetValueMapping()._asdict()
-                )
+                ).infer_objects(copy=False)
 
                 input_feature_test_df = test_df.drop(columns=[TARGET_COLUMN], axis=1)
 
@@ -138,7 +138,7 @@ class DataTransformation:
 
                 target_feature_test_df = target_feature_test_df.replace(
                 TargetValueMapping()._asdict()
-                )
+                ).infer_objects(copy=False)
 
                 logging.info("Got train features and test features of Testing dataset")
 
