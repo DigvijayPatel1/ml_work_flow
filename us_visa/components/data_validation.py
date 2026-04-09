@@ -95,8 +95,8 @@ class DataValidation:
         """
 
         try:
-            report = Report(metrics=[DataDriftPreset()])
-            report.run(reference_data=reference_df, current_data=current_df)
+            report = Report(metrics=[DataDriftPreset()]) #Create a drift report object
+            report.run(reference_data=reference_df, current_data=current_df) #run the comparsion between reference and current dataset to detect drift
 
             result = report.as_dict()
 

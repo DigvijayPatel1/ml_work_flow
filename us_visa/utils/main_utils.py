@@ -13,7 +13,7 @@ from us_visa.logger import logging
 def read_yaml_file(file_path: str) -> dict:
     try:
         with open(file_path, "rb") as yaml_file:
-            return yaml.safe_load(yaml_file)
+            return yaml.safe_load(yaml_file) # Converts a YAML file into a Python dictionary or list
 
     except Exception as e:
         raise USvisaException(e, sys) from e
@@ -27,7 +27,7 @@ def write_yaml_file(file_path: str, content: object, replace: bool = False) -> N
                 os.remove(file_path)
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
         with open(file_path, "w") as file:
-            yaml.dump(content, file)
+            yaml.dump(content, file) # Converts Python data structures to a YAML-formatted string or file.
     except Exception as e:
         raise USvisaException(e, sys) from e
     
